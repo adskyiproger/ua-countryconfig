@@ -16,10 +16,41 @@ import { readFileSync } from 'fs'
 import os from 'os'
 import pkgUp from 'pkg-up'
 
-const ignoredIncomingPaths = ['/health/ready']
+const ignoredIncomingPaths = ['/health/ready', '/ping']
 
 function getRequestPath(url = '') {
   return url.split('?')[0]
+}
+
+function isDynamicPathSegment(segment: string) {
+  return (
+    segment.includes('.') ||
+    /^\d+$/.test(segment) ||
+    /^[0-9a-f]{24}$/i.test(segment) ||
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+      segment
+    )
+  )
+}
+
+function getTracePath(url = '') {
+  const path = getRequestPath(url)
+
+  if (!path || path === '/') {
+    return '/'
+  }
+
+  return path
+    .replace(/\/+/g, '/')
+    .split('/')
+    .map((segment, index) =>
+      index > 0 && isDynamicPathSegment(segment) ? '#' : segment
+    )
+    .join('/')
+}
+
+function getHttpSpanName(method = 'GET', url = '') {
+  return `${method} ${getTracePath(url)}`
 }
 
 function getServiceName(packageJsonPath: string) {
@@ -56,7 +87,12 @@ function initSdk(packageJsonPath: string) {
         },
         '@opentelemetry/instrumentation-http': {
           ignoreIncomingRequestHook: (request) =>
-            ignoredIncomingPaths.includes(getRequestPath(request.url))
+            ignoredIncomingPaths.includes(getRequestPath(request.url)),
+          requestHook: (span, request) => {
+            span.updateName(
+              getHttpSpanName(request.method, 'url' in request ? request.url : '')
+            )
+          }
         }
       })
     ]
