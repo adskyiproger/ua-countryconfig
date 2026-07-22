@@ -16,7 +16,7 @@ import { readFileSync } from 'fs'
 import os from 'os'
 import pkgUp from 'pkg-up'
 
-const ignoredIncomingPaths = ['/health/ready', '/ping']
+const ignoredIncomingPaths = ['/health/ready']
 
 function getRequestPath(url = '') {
   return url.split('?')[0]
