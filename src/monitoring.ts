@@ -102,7 +102,12 @@ function initSdk(packageJsonPath: string) {
         },
         '@opentelemetry/instrumentation-host-metrics': {
           enabled: isMetricsEnabled(),
-          metricGroups: ['process.cpu', 'process.memory']
+          metricGroups: [
+            'process.cpu',
+            'process.memory',
+            'system.cpu',
+            'system.memory'
+          ]
         },
         '@opentelemetry/instrumentation-http': {
           ignoreIncomingRequestHook: (request) =>
