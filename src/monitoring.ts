@@ -94,6 +94,7 @@ function initSdk(packageJsonPath: string) {
           enabled: false
         },
         '@opentelemetry/instrumentation-host-metrics': {
+          enabled: true,
           metricGroups: [
             'process.cpu',
             'process.memory',
