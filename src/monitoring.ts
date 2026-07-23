@@ -9,8 +9,10 @@
  * Copyright (C) The OpenCRVS Authors located at https://github.com/opencrvs/opencrvs-core/blob/master/AUTHORS.
  */
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node'
+import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http'
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
 import { resourceFromAttributes } from '@opentelemetry/resources'
+import { PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics'
 import { NodeSDK } from '@opentelemetry/sdk-node'
 import { readFileSync } from 'fs'
 import os from 'os'
@@ -53,6 +55,10 @@ function getHttpSpanName(method = 'GET', url = '') {
   return `${method} ${getTracePath(url)}`
 }
 
+function isMetricsEnabled() {
+  return process.env.OTEL_METRICS_EXPORTER !== 'none'
+}
+
 function getServiceName(packageJsonPath: string) {
   const packageName = JSON.parse(readFileSync(packageJsonPath, 'utf8')).name
 
@@ -80,17 +86,33 @@ function initSdk(packageJsonPath: string) {
   const sdk = new NodeSDK({
     resource: getResource(packageJsonPath),
     traceExporter: new OTLPTraceExporter(),
+    ...(isMetricsEnabled()
+      ? {
+          metricReaders: [
+            new PeriodicExportingMetricReader({
+              exporter: new OTLPMetricExporter()
+            })
+          ]
+        }
+      : {}),
     instrumentations: [
       getNodeAutoInstrumentations({
         '@opentelemetry/instrumentation-hapi': {
           enabled: false
+        },
+        '@opentelemetry/instrumentation-host-metrics': {
+          enabled: isMetricsEnabled(),
+          metricGroups: ['process.cpu', 'process.memory']
         },
         '@opentelemetry/instrumentation-http': {
           ignoreIncomingRequestHook: (request) =>
             ignoredIncomingPaths.includes(getRequestPath(request.url)),
           requestHook: (span, request) => {
             span.updateName(
-              getHttpSpanName(request.method, 'url' in request ? request.url : '')
+              getHttpSpanName(
+                request.method,
+                'url' in request ? request.url : ''
+              )
             )
           }
         }
