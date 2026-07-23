@@ -11,7 +11,10 @@
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node'
 import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http'
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
-import { resourceFromAttributes } from '@opentelemetry/resources'
+import {
+  defaultResource,
+  resourceFromAttributes
+} from '@opentelemetry/resources'
 import { PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics'
 import { NodeSDK } from '@opentelemetry/sdk-node'
 import { readFileSync } from 'fs'
@@ -55,10 +58,6 @@ function getHttpSpanName(method = 'GET', url = '') {
   return `${method} ${getTracePath(url)}`
 }
 
-function isMetricsEnabled() {
-  return process.env.OTEL_METRICS_EXPORTER !== 'none'
-}
-
 function getServiceName(packageJsonPath: string) {
   const packageName = JSON.parse(readFileSync(packageJsonPath, 'utf8')).name
 
@@ -70,38 +69,31 @@ function getServiceName(packageJsonPath: string) {
 }
 
 function getResource(packageJsonPath: string) {
-  return resourceFromAttributes({
-    'service.name': getServiceName(packageJsonPath),
-    'deployment.environment':
-      process.env.OTEL_DEPLOYMENT_ENVIRONMENT ||
-      process.env.NODE_ENV ||
-      'development',
-    'host.name': os.hostname(),
-    'container.id': process.env.HOSTNAME || '',
-    'k8s.node.name': process.env.OTEL_NODE_NAME || ''
-  })
+  return defaultResource().merge(
+    resourceFromAttributes({
+      'service.name': getServiceName(packageJsonPath),
+      'host.name': os.hostname(),
+      'container.id': process.env.HOSTNAME || '',
+      'k8s.node.name': process.env.OTEL_NODE_NAME || ''
+    })
+  )
 }
 
 function initSdk(packageJsonPath: string) {
   const sdk = new NodeSDK({
     resource: getResource(packageJsonPath),
     traceExporter: new OTLPTraceExporter(),
-    ...(isMetricsEnabled()
-      ? {
-          metricReaders: [
-            new PeriodicExportingMetricReader({
-              exporter: new OTLPMetricExporter()
-            })
-          ]
-        }
-      : {}),
+    metricReaders: [
+      new PeriodicExportingMetricReader({
+        exporter: new OTLPMetricExporter()
+      })
+    ],
     instrumentations: [
       getNodeAutoInstrumentations({
         '@opentelemetry/instrumentation-hapi': {
           enabled: false
         },
         '@opentelemetry/instrumentation-host-metrics': {
-          enabled: isMetricsEnabled(),
           metricGroups: [
             'process.cpu',
             'process.memory',
