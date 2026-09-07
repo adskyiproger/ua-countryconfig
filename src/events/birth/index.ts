@@ -364,7 +364,7 @@ export const birthEvent = defineConfig({
         register: {
           id: 'event.birth.action.edit.register.copy',
           defaultMessage:
-            'You are about to register this birth event with your edits. Please ensure all details are correct before proceeding.<br></br><br></br><strong>WARNING!</strong>: By continuing, you confirm that you have reviewed the record alongside supporting documentation. The record will proceed to be <strong>legally registered</strong> via the outbox. Further amends after registration can only be made via a legal correction process.',
+            'You are about to register this birth event with your edits. Please ensure all details are correct before proceeding.<br><br/><br><br/><strong>WARNING!</strong>: By continuing, you confirm that you have reviewed the record alongside supporting documentation. The record will proceed to be <strong>legally registered</strong> via the outbox. Further amends after registration can only be made via a legal correction process.',
           description: 'Confirmation text for the register with edits action'
         }
       }
@@ -858,7 +858,7 @@ export const birthEvent = defineConfig({
         id: 'event.birth.action.register.supportingCopy',
         description: 'Confirmation text for the register action',
         defaultMessage:
-          "Registering this birth event will create an official civil registration record. Please ensure all details are correct before proceeding.<br></br><br></br><strong>WARNING!</strong>: By clicking 'Register', you confirm that you have reviewed the record alongside supporting documentation in the Record tab. The record will proceed to be <strong>legally registered</strong> via the outbox. Further amends after registration can only be made via a legal correction process."
+          "Registering this birth event will create an official civil registration record. Please ensure all details are correct before proceeding.<br><br/><br><br/><strong>WARNING!</strong>: By clicking 'Register', you confirm that you have reviewed the record alongside supporting documentation in the Record tab. The record will proceed to be <strong>legally registered</strong> via the outbox. Further amends after registration can only be made via a legal correction process."
       },
       flags: [
         { id: 'validated', operation: 'remove' },
@@ -929,6 +929,28 @@ export const birthEvent = defineConfig({
         { type: ConditionalType.SHOW, conditional: not(flag('revoked')) }
       ],
       correctionForm: CORRECTION_FORM
+    },
+    {
+      type: ActionType.APPROVE_CORRECTION,
+      label: {
+        id: 'v2.events.correction.approve.label',
+        defaultMessage: 'Approve correction',
+        description: 'Label for the approve correction action'
+      },
+      conditionals: [
+        { type: ConditionalType.SHOW, conditional: not(flag('revoked')) }
+      ]
+    },
+    {
+      type: ActionType.REJECT_CORRECTION,
+      label: {
+        id: 'v2.events.correction.reject.label',
+        defaultMessage: 'Reject correction',
+        description: 'Label for the reject correction action'
+      },
+      conditionals: [
+        { type: ConditionalType.SHOW, conditional: not(flag('revoked')) }
+      ]
     },
     {
       type: ActionType.ARCHIVE,

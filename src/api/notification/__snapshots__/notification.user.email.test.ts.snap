@@ -50,7 +50,7 @@ exports[`User notification - Email > 2fa 1`] = `
     <p>
         This code expires in 10 minutes.
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, <br />
         Farajaland CRS Team
@@ -113,7 +113,7 @@ exports[`User notification - Email > change-email-address 1`] = `
     <p>
         To confirm this change, use the code: <strong>654321</strong>
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, <br />
         Farajaland CRS Team
@@ -176,7 +176,7 @@ exports[`User notification - Email > change-phone-number 1`] = `
     <p>
         To confirm this change, use the code: <strong>123456</strong>
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, <br />
         Farajaland CRS Team
@@ -315,7 +315,7 @@ exports[`User notification - Email > reset-password 1`] = `
     <p>
         This code expires in 10 minutes.
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, <br />
         Farajaland CRS Team
@@ -378,7 +378,7 @@ exports[`User notification - Email > reset-password-by-admin 1`] = `
     <p>
         You can now login with the temporary password: <strong>tempPass123</strong>
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, <br />
         Farajaland CRS Team
@@ -514,7 +514,7 @@ exports[`User notification - Email > user-updated 1`] = `
     <p>
         Your new username is: <strong>j.doe</strong>
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, <br />
         Farajaland CRS Team
@@ -577,7 +577,7 @@ exports[`User notification - Email > username-reminder 1`] = `
     <p>
         Your username is: <strong>j.doe</strong>
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, <br />
         Farajaland CRS Team

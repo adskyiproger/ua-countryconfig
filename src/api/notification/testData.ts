@@ -507,44 +507,44 @@ export const informantNotificationTestData: {
   actionType: ActionType
   eventDocument: EventDocument
 }[] = [
-    {
-      eventType: Event.Birth,
-      actionType: ActionType.NOTIFY,
-      eventDocument: birthNotificationEvent
-    },
-    {
-      eventType: Event.Birth,
-      actionType: ActionType.DECLARE,
-      eventDocument: birthDeclarationEvent
-    },
-    {
-      eventType: Event.Birth,
-      actionType: ActionType.REGISTER,
-      eventDocument: birthRegistrationEvent
-    },
-    {
-      eventType: Event.Birth,
-      actionType: ActionType.REJECT,
-      eventDocument: birthRejectionEvent
-    },
-    {
-      eventType: Event.Death,
-      actionType: ActionType.NOTIFY,
-      eventDocument: deathNotificationEvent
-    },
-    {
-      eventType: Event.Death,
-      actionType: ActionType.DECLARE,
-      eventDocument: deathDeclarationEvent
-    },
-    {
-      eventType: Event.Death,
-      actionType: ActionType.REGISTER,
-      eventDocument: deathRegistrationEvent
-    },
-    {
-      eventType: Event.Death,
-      actionType: ActionType.REJECT,
-      eventDocument: deathRejectionEvent
-    }
-  ]
+  {
+    eventType: Event.Birth,
+    actionType: ActionType.NOTIFY,
+    eventDocument: birthNotificationEvent
+  },
+  {
+    eventType: Event.Birth,
+    actionType: ActionType.DECLARE,
+    eventDocument: birthDeclarationEvent
+  },
+  {
+    eventType: Event.Birth,
+    actionType: ActionType.REGISTER,
+    eventDocument: birthRegistrationEvent
+  },
+  {
+    eventType: Event.Birth,
+    actionType: ActionType.REJECT,
+    eventDocument: birthRejectionEvent
+  },
+  {
+    eventType: Event.Death,
+    actionType: ActionType.NOTIFY,
+    eventDocument: deathNotificationEvent
+  },
+  {
+    eventType: Event.Death,
+    actionType: ActionType.DECLARE,
+    eventDocument: deathDeclarationEvent
+  },
+  {
+    eventType: Event.Death,
+    actionType: ActionType.REGISTER,
+    eventDocument: deathRegistrationEvent
+  },
+  {
+    eventType: Event.Death,
+    actionType: ActionType.REJECT,
+    eventDocument: deathRejectionEvent
+  }
+]

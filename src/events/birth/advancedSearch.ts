@@ -9,7 +9,12 @@
  * Copyright (C) The OpenCRVS Authors located at https://github.com/opencrvs/opencrvs-core/blob/master/AUTHORS.
  */
 
-import { AdvancedSearchConfig, event, field, user } from '@opencrvs/toolkit/events'
+import {
+  AdvancedSearchConfig,
+  event,
+  field,
+  user
+} from '@opencrvs/toolkit/events'
 import { SelectOption } from '@opencrvs/toolkit/events'
 import {
   PlaceOfBirth,

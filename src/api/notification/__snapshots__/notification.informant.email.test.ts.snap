@@ -52,12 +52,12 @@ exports[`Informant notification - Email > birth - DECLARE 1`] = `
         Your registration tracking ID is <strong>PRZIB7</strong>. Please use this in any follow up enquiries with the Registrar
         at Windmill village registrar office.
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, <br />
         Farajaland CRS Team
     </p>
-    </br>
+    <br/>
     <i>This is an automated message. Please do not reply to this email.</i>
 </body>
 
@@ -118,13 +118,13 @@ exports[`Informant notification - Email > birth - NOTIFY 1`] = `
     </p>
         Your birth registration tracking ID is <strong>PRZIB7</strong>.
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, 
     <br />
         Farajaland CRS Team
     </p>
-    </br>
+    <br/>
     <i>This is an automated message. Please do not reply to this email.</i>
 </body>
 
@@ -190,12 +190,12 @@ exports[`Informant notification - Email > birth - REGISTER 1`] = `
         Please visit Windmill village registrar office with your ID to collect your birth certificate. Your registration tracking ID is
         PRZIB7.
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, <br />
         Farajaland CRS Team
     </p>
-    </br>
+    <br/>
     <i>This is an automated message. Please do not reply to this email.</i>
 </body>
 
@@ -257,12 +257,12 @@ exports[`Informant notification - Email > birth - REJECT 1`] = `
     <p>
         Your registration tracking ID is <strong>PRZIB7</strong>.
     </p>
-    </br>   
+    <br/>   
     <p>
         Best regards, <br />
         Farajaland CRS Team
     </p>
-    </br>
+    <br/>
     <i>This is an automated message. Please do not reply to this email.</i>
 </body>
 
@@ -325,12 +325,12 @@ exports[`Informant notification - Email > death - DECLARE 1`] = `
         Your registration tracking ID is <strong>PRZIB7</strong>. Please use this in any follow up enquiries with the Registrar
         at Windmill village registrar office.
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, <br />
         Farajaland CRS Team
     </p>
-    </br>
+    <br/>
     <i>This is an automated message. Please do not reply to this email.</i>
 </body>
 
@@ -388,12 +388,12 @@ exports[`Informant notification - Email > death - NOTIFY 1`] = `
         Please visit Windmill village registrar office to complete your death declaration. Your death registration tracking ID is
         <strong>PRZIB7</strong>.
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, <br />
         Farajaland CRS Team
     </p>
-    </br>
+    <br/>
     <i>This is an automated message. Please do not reply to this email.</i>
 </body>
 
@@ -457,12 +457,12 @@ exports[`Informant notification - Email > death - REGISTER 1`] = `
         Please visit Windmill village registrar office with your ID to collect your death certificate. Your registration tracking ID is
         <strong>PRZIB7</strong>.
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, <br />
         Farajaland CRS Team
     </p>
-    </br>
+    <br/>
     <i>This is an automated message. Please do not reply to this email.</i>
 </body>
 
@@ -524,12 +524,12 @@ exports[`Informant notification - Email > death - REJECT 1`] = `
     <p>
         Your registration tracking ID is <strong>PRZIB7</strong>.
     </p>
-    </br>
+    <br/>
     <p>
         Best regards, <br />
         Farajaland CRS Team
     </p>
-    </br>
+    <br/>
     <i>This is an automated message. Please do not reply to this email.</i>
 </body>
 
