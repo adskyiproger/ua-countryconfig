@@ -1,0 +1,28 @@
+namespaceOverride: "traefik"
+logs:
+  general:
+    level: "INFO"
+    format: "common"
+  access:
+    enabled: true
+ingressRoute:
+  dashboard:
+    enabled: false
+
+tlsStore: {}
+
+providers:
+  kubernetesCRD:
+    enabled: true
+  kubernetesIngress:
+    enabled: true
+  kubernetesGateway:
+    enabled: false
+service:
+  enabled: true
+  single: false
+
+ports:
+  web:
+    port: 8000
+    protocol: TCP
